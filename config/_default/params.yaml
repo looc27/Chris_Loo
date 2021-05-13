@@ -5,9 +5,9 @@
 
 # Appearance
 
-theme: Ocean
+theme: Apogee
 day_night: true
-font: ''
+font: 'Lato'
 font_size: L
 
 # SEO
@@ -58,8 +58,8 @@ address_format: en-us
 
 highlight: true
 highlight_languages:
-  - r
-  - python
+  - R
+  - Python
   - SQL
 math: false
 diagram: false
@@ -76,9 +76,9 @@ show_related:
   book: true
   page: false
   post: true
-  project: true
-  publication: true
-  event: true
+  project: false
+  publication: false
+  event: false
 reading_time: true
 section_pager: false
 docs_section_pager: true
