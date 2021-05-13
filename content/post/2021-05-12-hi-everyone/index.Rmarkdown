@@ -17,21 +17,59 @@ image:
 projects: []
 ---
 
-This is my first website. It is a work in progress...
+# This is my first website. It is a work in progress...
 
-```{r}
-summary(Orange)
+## Experiment with color on gapminder data.
+
+```{r,eval=FALSE}
+# Note that I have already taken care of installing these in this RStudio Cloud project, but if you want to use these libraries yourself, here's how you'd install them:
+library(devtools)
+devtools::install_github("wilkelab/cowplot")
+devtools::install_github("clauswilke/colorblindr")
+devtools::install_github("dill/beyonce")
+
 ```
 
-
 ```{r echo=FALSE}
+library(tidyverse)
+library(readr)
+library(wordbankr)
+library(here)
+library(RColorBrewer)
+library(wesanderson)
+library(ggthemes)
+library(ggsci)
+library(beyonce)
+library(viridis)
+library(forcats)
+library(colorspace)
+library(colorblindr)
+library(ggrepel)
 library(ggplot2)
-oplot <- ggplot(Orange, aes(x = age, 
-                   y = circumference, 
-                   colour = Tree)) +
-  geom_point() +
-  geom_line() +
-  guides(colour = FALSE) +
-  theme_bw()
-oplot
+library(gapminder)
+library(knitr)
+#load data
+gap <- gapminder
+glimpse(gap)
+
+```
+
+## Version with _good_ color
+
+Also, good with default colors
+
+```{r}
+brewer.pal(5, "Dark2") # list 5 hex colors
+
+my_plot <- ggplot(gap, aes(x = log(gdpPercap), y = lifeExp, color = (continent))) + 
+  geom_point(alpha = .2, size = 1) +
+  labs(x = "GDP Per Capita (log)", y = "Life Expectancy") +
+  facet_wrap(~continent)
+my_plot + scale_color_brewer(palette = "Dark2")
+```
+
+## Version with greyscale
+
+```{r}
+my_plot + scale_color_grey(start = 0.2, end = .8) 
 ```
