@@ -1,0 +1,220 @@
+---
+title: End of term project
+author: Christopher P. Loo
+date: '2021-06-11'
+slug: end-of-term-project
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-06-11T23:56:31-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+## HLA status from patients with AML
+
+Data is publically available from OHSU.
+www.vizome.org
+
+
+
+
+
+```{r setup}
+library(tidyverse)
+library(ggvis)
+my_data <- read.csv(file = "/Users/looc/Box/2021_Spring_classes/Data_Viz/blogdown/Chris_Loo_website/content/post/2021-06-11-end-of-term-project/BeatAML_HLA.csv", header=TRUE)
+my_data <- as_tibble(my_data)
+my_data
+```
+
+
+```{recho=FALSE}
+#Reverse sort
+my_data <- my_data[order(my_data$PatientID, decreasing = FALSE),]
+#my_data
+```
+
+```{r}
+#Keep only first duplicate of my_data$PatientID
+unique_patID <- my_data[!duplicated(my_data$PatientID),]
+#unique_patID
+```
+
+
+```{r}
+HLA_A_stack <- stack(unique_patID, select = c(HLA_A_1, HLA_A_2))
+HLA_B_stack <- stack(unique_patID, select = c(HLA_B_1, HLA_B_2))
+HLA_C_stack <- stack(unique_patID, select = c(HLA_C_1, HLA_C_2))
+num_HLA_A <-  count(HLA_A_stack, values)
+num_HLA_B <-  count(HLA_B_stack, values)
+num_HLA_C <-  count(HLA_C_stack, values)
+num_HLA_A <- num_HLA_A[order(num_HLA_A$n, decreasing = TRUE),]
+num_HLA_B <- num_HLA_B[order(num_HLA_B$n, decreasing = TRUE),]
+num_HLA_C <- num_HLA_C[order(num_HLA_C$n, decreasing = TRUE),]
+num_HLA_A
+```
+
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+theme_set(theme_pubr())
+ggplot(num_HLA_A, aes(x = values, y = n)) +
+  geom_bar(fill = "#00AFBB", stat = "identity") +
+  geom_text(aes(label = n), vjust = -0.3) + ggtitle("Population Frequency of HLA-A") +
+  theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA A") + ylab("Counts")
+```
+
+```{r}
+ggplot(num_HLA_B, aes(x = values, y = n)) +
+  geom_bar(fill = "#FC4E07", stat = "identity") +
+  geom_text(aes(label = n), vjust = -0.3) + ggtitle("Population Frequency of HLA-B") +
+  theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA B") + ylab("Counts")
+```
+
+```{r}
+
+ggplot(num_HLA_C, aes(x = values, y = n)) +
+  geom_bar(fill = "#E7B800", stat = "identity") +
+  geom_text(aes(label = n), vjust = -0.3) + ggtitle("Population Frequency of HLA-C") +
+  theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA C") + ylab("Counts")
+```
+
+
+
+
+
+
+
+```{r}
+library(dplyr)
+HLA_A1_agg <- count(unique_patID, HLA_A_1)
+HLA_A1_agg[order(HLA_A1_agg$n, decreasing = TRUE),]
+```
+
+
+
+```{r}
+HLA_A2_agg <- count(unique_patID,HLA_A_2)
+HLA_A2_agg[order(HLA_A2_agg$n, decreasing = TRUE),]
+```
+
+```{r}
+HLA_B1_agg <- count(unique_patID,HLA_B_1)
+HLA_B1_agg[order(HLA_B1_agg$n, decreasing = TRUE),]
+```
+
+```{r}
+HLA_B2_agg <- count(unique_patID,HLA_B_2)
+HLA_B2_agg[order(HLA_B2_agg$n, decreasing = TRUE),]
+```
+
+```{r}
+HLA_C1_agg <- count(unique_patID,HLA_C_1)
+HLA_C1_agg[order(HLA_C1_agg$n, decreasing = TRUE),]
+```
+
+```{r}
+HLA_C2_agg <- count(unique_patID,HLA_C_2)
+HLA_C2_agg[order(HLA_C2_agg$n, decreasing = TRUE),]
+```
+
+
+```{r}
+library(forcats)
+ggplot(mutate(unique_patID, HLA_A_1 = fct_infreq(HLA_A_1))) + geom_bar(aes(x = HLA_A_1)) +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+```
+
+
+
+```{r}
+A1 <- unique_patID$HLA_A_1
+A2 <-  unique_patID$HLA_A_2
+patID <- unique_patID$PatientID
+combined_HLA_A <- c(A1,A2)
+HLA_A <- as_tibble(combined_HLA_A)
+#HLA_A <- unique(HLA_A)
+table(HLA_A)
+```
+
+
+
+
+```{r}
+z <- count(HLA_A, value)
+z
+```
+
+```{r}
+library(forcats)
+library(ggthemes)
+plot_A <- ggplot(mutate(HLA_A, value = fct_infreq(value))) + geom_bar(aes(x = value, fill = "orange")) + 
+  labs(x = "HLA-A type") + theme(axis.text.x=element_text(angle = 90,hjust = 1,vjust = 0.5)) + ggtitle("Population Frequency of HLA-A") + theme(legend.position = "none")
+A <- plot_A + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text = element_text(size = 10)) +
+  theme(panel.background = element_blank()) +
+  theme(axis.line.x = element_line(color = "gray80", size = 0.5)) +
+  theme(axis.ticks = element_line(color = "gray80", size = 0.5))
+A
+```
+```{r}
+ggsave("HLA_A.png", A )
+```
+
+```{r}
+B1 <- unique_patID$HLA_B_1
+B2 <-  unique_patID$HLA_B_2
+patID <- unique_patID$PatientID
+combined_HLA_B <- c(B1,B2)
+HLA_B <- as_tibble(combined_HLA_B)
+#HLA_A <- unique(HLA_A)
+table(HLA_B)
+```
+
+
+```{r}
+plot_B <- ggplot(mutate(HLA_B, value = fct_infreq(value))) + geom_bar(aes(x = value)) +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust= 0.5)) 
+plot_B + ggtitle("Population Frequency of HLA-B") 
+```
+
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+theme_set(theme_pubr())
+ggplot(num_HLA_A, aes(x = values, y = n)) +
+  geom_bar(fill = "#0073C2FF", stat = "identity") +
+  geom_text(aes(label = n), vjust = -0.3) + ggtitle("Population Frequency of HLA-A") +
+  theme_pubclean() + theme(axis.text.x = element_text(angle = 90))
+```
+
+
+```{r}
+C1 <- unique_patID$HLA_C_1
+C2 <-  unique_patID$HLA_C_2
+patID <- unique_patID$PatientID
+combined_HLA_C <- c(C1,C2)
+HLA_C <- as_tibble(combined_HLA_C)
+#HLA_A <- unique(HLA_A)
+table(HLA_C)
+```
+
+
+```{r}
+library(forcats)
+plot_C <- ggplot(mutate(HLA_C, value = fct_infreq(value))) + geom_bar(aes(x = value)) +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+plot_C + ggtitle("Population Frequency of HLA-C") 
+```
+
