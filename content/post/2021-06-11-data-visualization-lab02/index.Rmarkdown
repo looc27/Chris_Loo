@@ -1,0 +1,271 @@
+---
+title: Data Visualization Lab02
+author: Christopher P. Loo
+date: '2021-06-11'
+slug: data-visualization-lab02
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-06-11T22:56:40-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+# Workflow for Lab 02
+
+The lab instructions can be found [here](https://stevenbedrick.github.io/data-vis-labs-2020/02-moma.html); we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document. Don't forget to update the "author" metadata field at the top of the file!
+
+# Start by Loading Libraries
+
+```{r load-packages, include=FALSE}
+library(readr)
+library(here)
+library(tidyverse)
+library(ggthemes)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r Loading data}
+moma <- read_csv(here::here("content","post","2021-06-11-data-visualization-lab02","data", "artworks-cleaned.csv"))
+```
+
+```{r glimpse}
+glimpse(moma)
+```
+
+
+# Know Your Data
+
+## How Many Paintings?
+2,253
+
+## What is the first painting that was acquired?
+```{r}
+moma %>% select(artist, title, year_acquired) %>% 
+  arrange(year_acquired)
+```
+"House by the Railroad" by Edward Hopper and 
+"Seated Nude" by Bernard Karfiol were both aquired in 1930
+
+## What is the oldest painting?
+```{r}
+moma %>% select(artist, title, year_created) %>% 
+  arrange(year_created)
+```
+"Landscape at Daybreak" by Odilon Redon was made in 1872.
+
+## How many artists?
+```{r}
+# distinct(moma, 'artist'), this only gives the number or columns for 'artist' which is 1
+moma %>% distinct(artist)
+```
+There are 989 distinct artists in this dataset.
+
+## Which artist has the most paintings?
+```{r}
+# moma %>% distinct(artist) %>% count(title) does not work
+moma %>% count(artist, sort = TRUE)
+```
+Pablo Picasso has the most paintings in the moma dataset with 55 paintings
+
+## How many paintings, by gender?
+```{r}
+moma %>% count(artist_gender, sort = TRUE)
+```
+
+## How many artists, by gender?
+```{r}
+moma %>% count(artist_gender, artist, sort = TRUE) %>% 
+  filter(artist_gender == "Female")
+```
+
+```{r}
+moma %>% count(artist_gender, artist, sort = TRUE) %>% 
+  filter(artist_gender == "Male")
+
+```
+
+```{r}
+# I knew there was a better method, seems a bit weird to use count twice
+moma %>% count(artist_gender, artist) %>% 
+  count(artist_gender)
+```
+
+## In which years were the most paintings in the collection _acquired_?
+```{r}
+# moma %>% count(artist, year_acquired) %>% count(year_acquired, sort = TRUE)   # this gave me a different result, which I don't completely understand.
+
+moma %>% count(year_acquired, sort = TRUE)
+```
+In 1985 there were 86 paintings that the MoMa acquired.
+
+## In which years were the most paintings in the collection _created_?
+```{r}
+moma %>% count(year_created, sort = TRUE)
+```
+The collection has most paintings that were created in 1977.
+
+## What about the first painting by a solo female artist?
+```{r}
+moma %>% filter(artist_gender == "Female") %>% 
+  select(year_acquired) %>% arrange(year_acquired)
+# This worked but it doesn't show any other data.
+
+```
+
+
+```{r}
+# This also worked
+moma %>% 
+  select(title, artist, year_acquired, year_created, artist_gender) %>%
+  filter(artist_gender == "Female") %>%
+  arrange(year_acquired)
+```
+```{r}
+moma %>% 
+  filter(num_artists == 1 & n_female_artists == 1) %>% 
+  select(title, artist, year_acquired, year_created) %>% 
+  arrange(year_acquired)
+```
+
+## What is the oldest painting bhye a solo female artist, and when was it created?
+
+```{r}
+moma %>% filter(num_artists == 1 & n_female_artists == 1) %>% 
+  select(title, artist, year_acquired, year_created) %>% 
+  arrange(year_created)
+```
+
+# Basic Plotting!
+
+## Year painted vs. year acquired
+
+```{r}
+ggplot(moma, aes(x = year_created, y = year_acquired)) +
+  geom_point(alpha = 0.2, na.rm = TRUE) +
+  geom_abline(intercept = c(0,0), color = "Red") +
+  labs(x = "Year Painted", y = "Year Acquired") +
+  ggtitle("MoMA Keeps Its Collection Current")
+```
+
+## Faceting by gender
+```{r}
+moma_solo <- moma %>% 
+  filter(num_artists == 1)
+ggplot(moma_solo, aes(x = year_created, y = year_acquired)) +
+  geom_point(alpha = .1) +
+  geom_abline(intercept = c(0,0), color = "Red") +
+  labs(x = "Year Painted", y = "Year Acquired") +
+  ggtitle("MoMa Keeps Its Collection Current") +
+  facet_wrap(~artist_gender)
+```
+
+# Exploring Painting Dimensions
+
+## Challenge #4
+```{r}
+ggplot(moma, aes(x = width_cm, y = height_cm)) +
+  geom_point() +
+  labs(x = "Width", y = "Height") +
+  ggtitle("MoMA Paintings, Tall and Wide")
+```
+
+```{r}
+moma_dim <- moma %>% 
+  filter(height_cm < 600, width_cm < 760) %>% 
+  mutate(hw_ratio = height_cm / width_cm,
+         hw_cat = case_when(
+           hw_ratio > 1 ~ "taller than wide",
+           hw_ratio < 1 ~ "wider than tall",
+           hw_ratio == 1 ~ "perfect square"
+         ))
+library(ggthemes)
+ggplot(moma_dim, aes(x = width_cm, y = height_cm, colour = hw_cat)) +
+  geom_point(alpha = .5) +
+  ggtitle("MoMA Paintings, Tall and Wide") +
+  scale_colour_manual(name = "",
+                      values = c("gray50", "#FF9900", "#B14CF0")) +
+  theme_fivethirtyeight() +
+  theme(axis.title = element_text()) +
+  labs(x = "Width", y = "Height")
+```
+
+## Different colors
+```{r}
+
+```
+
+## Experimenting with `geom_annotate()`
+```{r}
+#library(ggthemes)
+
+ggplot(moma_dim, aes(x = width_cm, y = height_cm, colour = hw_cat)) +
+  geom_point(alpha = .5, show.legend = FALSE) +
+  ggtitle("MoMA Paintings, Tall and Wide") +
+  scale_colour_manual(name = "",
+                      values = c("gray50", "#ee5863", "#6999cd")) +
+  theme_fivethirtyeight() +
+  theme(axis.title = element_text()) +
+  labs(x = "Width", y = "Height") +
+  annotate(x = 200, y = 400, geom = "text", 
+           label = "Taller than\nWide", color = "#ee5863", 
+           size = 5, family = "Palatino", hjust =1, fontface = 2) +
+    annotate(x = 375, y = 100, geom = "text", 
+             label = "Wider than\nTall", color = "#6999cd", 
+             size = 5, family = "Palatino", hjust = 0, fontface = 2)
+```
+
+# Challenge #5, on your own!
+
+```{r include=FALSE}
+#install.packages("gridExtra")
+#library(gridExtra)
+
+moma_dim <- moma %>% 
+  filter(height_cm < 600, width_cm < 760) %>% 
+  mutate(hw_ratio = height_cm/width_cm,
+         hw_cat = case_when(
+           hw_ratio > 1 ~ "Taller than wide",
+           hw_ratio < 1 ~ "Wider than tall",
+           hw_ratio == 1 ~ "Perfect square"
+         ))
+```
+
+```{r}
+library(ggthemes)
+v <- ggplot(moma_dim, aes(x= hw_cat, y = year_created)) +
+  geom_violin() +
+  labs(x = "Shape of Painting", y = "Year Created") +
+  ggtitle("MoMA Paintings Shape Trends from 1872-2017")
+v
+```
+
+```{r}
+box <- v + geom_boxplot(width = 0.1)
+box
+```
+```{r}
+color_v <- ggplot(moma_dim, aes(x= hw_cat, y = year_created)) +
+  geom_violin(trim = FALSE, fill = '#A4A4A4', color = "darkred") +
+  labs(x = "Shape of Painting", y = "Year Created") +
+  ggtitle("MoMA Paintings Shape Trends from 1872-2017")
+color_v
+```
+```{r}
+v + scale_fill_brewer(palette="Blues")
+```
+
+```{r}
+#grid.arrange(v,box, color_v, ncol = 3)
+```
+
+
+I wanted to see if there were trends in dimensions of the MoMA paintings. If there any sort of cycle of paintings that were a perfect square size? Every 30 years? What about the other sizes? My initial thought was to make a continuous data graph of sizes over time, maybe a geom_point and geom_line to model the data. But it thought it might look better as a geom_violin plot where there are three categories on the x-axis and years_created on the y-axis.
