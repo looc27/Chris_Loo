@@ -1,0 +1,1345 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Christopher P. Loo" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Workflow for Lab 01 The lab instructions can be found here; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/data-visualization-lab01/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#EAF04E" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'" disabled>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'">
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f235bbd1074ce3f673d73093ae29931b.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/data-visualization-lab01/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Christopher P. Loo" />
+  <meta property="og:url" content="/post/data-visualization-lab01/" />
+  <meta property="og:title" content="Data Visualization Lab01 | Christopher P. Loo" />
+  <meta property="og:description" content="Workflow for Lab 01 The lab instructions can be found here; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document." /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-11T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-11T19:17:26-07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/data-visualization-lab01/"
+  },
+  "headline": "Data Visualization Lab01",
+  
+  "datePublished": "2021-06-11T00:00:00Z",
+  "dateModified": "2021-06-11T19:17:26-07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Christopher P. Loo"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Christopher P. Loo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Workflow for Lab 01 The lab instructions can be found here; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Data Visualization Lab01 | Christopher P. Loo</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  dark " data-wc-page-id="e8d09925ce43b63de1c8a1636713db77" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.f05482f48178c84fdc712e7fc44f6bd0.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Christopher P. Loo</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Christopher P. Loo</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Main</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="/"  aria-label="">
+              <i class="fas fa-" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Data Visualization Lab01</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jun 11, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="workflow-for-lab-01">Workflow for Lab 01</h1>
+<p>The lab instructions can be found <a href="https://stevenbedrick.github.io/data-vis-labs-2021/01-eda_hot_dogs.html" target="_blank" rel="noopener">here</a>; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document. Don&rsquo;t forget to update the &ldquo;author&rdquo; metadata field at the top of the file!</p>
+<h1 id="start-by-loading-libraries">Start by Loading Libraries</h1>
+<h1 id="loading-and-wrangling-data">Loading and wrangling data</h1>
+<h2 id="loading">Loading</h2>
+<p><em>Tip</em>: The data files for this lab are already loaded into this project, under the <code>data/</code> directory.</p>
+<pre><code class="language-r">hot_dogs &lt;- read_csv(here::here(&quot;content&quot;, &quot;post&quot;,&quot;2021-06-11-data-visualization-lab01&quot;,&quot;data&quot;,&quot;hot_dog_contest.csv&quot;), 
+    col_types = cols(
+      gender = col_factor(levels = NULL)
+    ))
+</code></pre>
+<p><strong>Why is better to import data with the extra line of of - col_types - than without it by just using hot_dogs &lt;- read.csv(&ldquo;data/hot_dog_contest.csv&rdquo;)?</strong></p>
+<p><strong>The difference that I notice is that the gender column is without quotes. Does changing the gender column to a factor make it available to count the number of &lsquo;male&rsquo; and &lsquo;female&rsquo; contestants?</strong></p>
+<pre><code class="language-r">glimpse(hot_dogs)
+</code></pre>
+<pre><code>Error in glimpse(hot_dogs): object 'hot_dogs' not found
+</code></pre>
+<pre><code class="language-r">hot_dogs
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'hot_dogs' not found
+</code></pre>
+<p>** I have used skimr in the past and for some data it is really helpful to get small histograms of the data.**</p>
+<pre><code class="language-r">library(skimr)
+skim(hot_dogs)
+</code></pre>
+<pre><code>Error in skim(hot_dogs): object 'hot_dogs' not found
+</code></pre>
+<h2 id="wrangling">Wrangling</h2>
+<p>Filtering and indicator field</p>
+<pre><code class="language-r">## mutate w/o the &gt;= 1997 will produce the same information as the first column (year.) Here a logical of TRUE or FALSE will result.
+ 
+hot_dogs &lt;- hot_dogs %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;%   
+  filter(year &gt;= 1981 &amp; gender == 'male')  ## ampersand (&amp;) must be used here not &quot;and&quot;
+</code></pre>
+<pre><code>Error in mutate(., post_ifoce = year &gt;= 1997): object 'hot_dogs' not found
+</code></pre>
+<pre><code class="language-r">hot_dogs
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'hot_dogs' not found
+</code></pre>
+<h1 id="initial-plot">Initial Plot</h1>
+<pre><code class="language-r">ggplot(hot_dogs, aes(x= year, y= num_eaten)) +
+  geom_col()
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<p>** I don&rsquo;t mind this boring looking plot but it would be nice to have a title and more year labels, every 2 or 5 years.**</p>
+<h1 id="axis-labels--title">Axis Labels &amp; Title</h1>
+<pre><code class="language-r">ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col() +
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;)
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<h1 id="initial-colors--styling">Initial Colors &amp; Styling</h1>
+<h2 id="challenge-1-3-different-versions">Challenge 1: 3 Different Versions</h2>
+<pre><code class="language-r"># White outlines version
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(colour = &quot;white&quot;)
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<pre><code class="language-r"># White outlines and blue columns version
+
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(colour = &quot;white&quot;, fill = &quot;navyblue&quot;) +  
+  labs(x = &quot;Year&quot;, y = &quot;Hot dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;)
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<pre><code class="language-r"># White outlines version
+# can use aes not only for mapping but for defining the aesthetics of geom_col
+
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &quot;white&quot;) +  
+  labs(x = &quot;Year&quot;, y = &quot;Hot dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;) 
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<h2 id="challenge-2-adjusting-the-legend">Challenge 2: Adjusting the Legend</h2>
+<pre><code class="language-r"># Deleted legend
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &quot;white&quot;) +
+  labs(x = &quot;Year&quot;, y = &quot;Hot dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathans Hot Dog Earting Contest Results, 1981-2017&quot;) +
+  theme(legend.position = &quot;none&quot;)
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<pre><code class="language-r">ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &quot;white&quot;) +  
+  labs(x = &quot;Year&quot;, y = &quot;Hot dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;) +
+  scale_fill_discrete(name = &quot;&quot;, labels = c(&quot;Pre-IFOCE&quot;, &quot;Post-IFOCE&quot;))
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object 'hot_dogs' not found
+</code></pre>
+<h1 id="change-the-dataset">Change the Dataset</h1>
+<p>IFOCE affiliation analysis</p>
+<h2 id="challenge-3-adding-columns-filtering">Challenge 3: Adding Columns, Filtering</h2>
+<pre><code class="language-r">hot_dogs_af &lt;- read_csv(here::here(&quot;content&quot;, &quot;post&quot;,&quot;2021-06-11-data-visualization-lab01&quot;,&quot;data&quot;, &quot;hot_dog_contest_with_affiliation.csv&quot;), 
+    col_types = cols(
+      affiliated = col_factor(levels = NULL), 
+      gender = col_factor(levels = NULL)
+      )) %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;% 
+  filter(year &gt;= 1981 &amp; gender == &quot;male&quot;)
+</code></pre>
+<pre><code class="language-r">glimpse(hot_dogs_af)
+</code></pre>
+<pre><code>Error in glimpse(hot_dogs_af): object 'hot_dogs_af' not found
+</code></pre>
+<h2 id="challenge-4-eda">Challenge 4: EDA</h2>
+<pre><code class="language-r"># Using dplyer::distinct to figure out how many unique values there are of affiliated
+hot_dogs_af %&gt;% distinct(affiliated)
+</code></pre>
+<pre><code>Error in distinct(., affiliated): object 'hot_dogs_af' not found
+</code></pre>
+<pre><code class="language-r"># Using dplyr::count to count the number of rows for each unique value of affiliated
+hot_dogs_af %&gt;% count(affiliated)
+</code></pre>
+<pre><code>Error in count(., affiliated): object 'hot_dogs_af' not found
+</code></pre>
+<h2 id="updated-plot">Updated Plot</h2>
+<pre><code class="language-r"># Making a plot identifying values that are affiliated
+
+ggplot(hot_dogs_af, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill= affiliated)) +
+  labs(x = &quot;Year&quot;, y = &quot;Hot dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;)
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs_af, aes(x = year, y = num_eaten)): object 'hot_dogs_af' not found
+</code></pre>
+<h2 id="challenge-5-adjusting-the-colors">Challenge 5: Adjusting the Colors</h2>
+<pre><code class="language-r"># Updating colours of the plot
+
+affil_plot &lt;- ggplot(hot_dogs_af, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = affiliated)) +
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan's Hot Dog Eating Contest Results, 1981-2017&quot;) +
+  scale_fill_manual(name = &quot;IFOC-affiliation&quot;, values = c('#E9602B','#2277A0','#CCB683'))
+</code></pre>
+<pre><code>Error in ggplot(hot_dogs_af, aes(x = year, y = num_eaten)): object 'hot_dogs_af' not found
+</code></pre>
+<pre><code class="language-r">affil_plot
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<h1 id="sweating-the-details">Sweating the Details</h1>
+<h2 id="initial-plot-1">Initial plot</h2>
+<pre><code class="language-r"># Adjusting the scales: default scales are c(0.05, 0) for continuous variables. The first number is multiplicative and second is additive. This brings the colored bars resting on both the x and y axis.
+
+affil_plot &lt;- affil_plot + 
+  scale_y_continuous(expand = c(0, 0),
+                     breaks = seq(0, 80, 10)) +
+  scale_x_continuous(expand = c(0, 0))
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<pre><code class="language-r">affil_plot
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<p><strong>Personally, I like having a little bit of space between the top of the orange bars. I increased the y breaks to equal seq(0, 80, 10) but nothing changed.</strong></p>
+<h2 id="challenge-6-custom-axes">Challenge 6: Custom Axes</h2>
+<pre><code class="language-r">affil_plot &lt;- affil_plot + 
+  coord_cartesian(xlim = c(1980, 2018), ylim = c(0, 80))
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<pre><code class="language-r">affil_plot
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<h1 id="themes">Themes</h1>
+<h2 id="initial-plot-2">Initial Plot</h2>
+<pre><code class="language-r"># Customizing the placement of the title, axis font size, removing the background color, and adjusting the color of the axis and ticks
+# default hjust: 0 == left, 0.5 == centered, 1 == right
+
+affil_plot + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text = element_text(size = 10)) +
+  theme(panel.background = element_blank()) +
+  theme(axis.line.x = element_line(color = &quot;gray80&quot;, size = 0.5)) +
+  theme(axis.ticks = element_line(color = &quot;gray80&quot;, size = 0.5))
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+<p><strong>I think without the background panel the plot looks better but is harder to interpret.</strong></p>
+<h2 id="making-a-custom-theme">Making a Custom Theme</h2>
+<pre><code class="language-r"># Might be easier to use a theme by creating a variable representing all of the settings
+
+hot_diggity &lt;- theme(plot.title = element_text(hjust = 0.5),
+                     axis.text = element_text(size = 10),
+                     panel.background = element_blank(),
+                     axis.line.x = element_line(color = &quot;gray80&quot;, size = 0.5),
+                     axis.ticks = element_line(color = &quot;gray80&quot;, size = 0.5),
+                     text = element_text(family = &quot;Lato&quot;) # need extrafont for this
+                     )
+</code></pre>
+<p>`</p>
+<pre><code class="language-r"># Another library theme
+
+affil_plot + theme_tufte(base_family = &quot;Palatino&quot;)
+</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object 'affil_plot' not found
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/data-visualization-lab01/&amp;text=Data%20Visualization%20Lab01" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/data-visualization-lab01/&amp;t=Data%20Visualization%20Lab01" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Data%20Visualization%20Lab01&amp;body=/post/data-visualization-lab01/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/data-visualization-lab01/&amp;title=Data%20Visualization%20Lab01" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Data%20Visualization%20Lab01%20/post/data-visualization-lab01/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/data-visualization-lab01/&amp;title=Data%20Visualization%20Lab01" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/christopher-p.-loo/avatar.LooChristopher_hu1df73a549ada4eb288ece16841f6f1b1_43264_270x270_fill_q75_lanczos_center.jpeg" alt="Christopher P. Loo">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Christopher P. Loo</h5>
+      <h6 class="card-subtitle">Postdoctoral Fellow</h6>
+      <p class="card-text">I investigate the immunological function and dysfunction in patients with cancer. I have 14+ years of performing basic and translational research. I am extremely interested in data science and I am motivated in bridging the gap between immunology and computational biology.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/" >
+        <i class="fas fa-"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=AQ9C6PoAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/looc27" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/www.linkedin.com/in/christopher-p-loo" >
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/R.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/Python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/SQL.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.71e713848164e269bc250f377042949d.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

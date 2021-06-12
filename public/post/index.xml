@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts | Christopher P. Loo</title>
+    <link>/post/</link>
+      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Posts</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 11 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Posts</title>
+      <link>/post/</link>
+    </image>
+    
+    <item>
+      <title>Data Visualization Lab01</title>
+      <link>/post/data-visualization-lab01/</link>
+      <pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/post/data-visualization-lab01/</guid>
+      <description>&lt;h1 id=&#34;workflow-for-lab-01&#34;&gt;Workflow for Lab 01&lt;/h1&gt;
+&lt;p&gt;The lab instructions can be found &lt;a href=&#34;https://stevenbedrick.github.io/data-vis-labs-2021/01-eda_hot_dogs.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document. Don&amp;rsquo;t forget to update the &amp;ldquo;author&amp;rdquo; metadata field at the top of the file!&lt;/p&gt;
+&lt;h1 id=&#34;start-by-loading-libraries&#34;&gt;Start by Loading Libraries&lt;/h1&gt;
+&lt;h1 id=&#34;loading-and-wrangling-data&#34;&gt;Loading and wrangling data&lt;/h1&gt;
+&lt;h2 id=&#34;loading&#34;&gt;Loading&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Tip&lt;/em&gt;: The data files for this lab are already loaded into this project, under the &lt;code&gt;data/&lt;/code&gt; directory.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;hot_dogs &amp;lt;- read_csv(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;,&amp;quot;2021-06-11-data-visualization-lab01&amp;quot;,&amp;quot;data&amp;quot;,&amp;quot;hot_dog_contest.csv&amp;quot;), 
+    col_types = cols(
+      gender = col_factor(levels = NULL)
+    ))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Why is better to import data with the extra line of of - col_types - than without it by just using hot_dogs &amp;lt;- read.csv(&amp;ldquo;data/hot_dog_contest.csv&amp;rdquo;)?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The difference that I notice is that the gender column is without quotes. Does changing the gender column to a factor make it available to count the number of &amp;lsquo;male&amp;rsquo; and &amp;lsquo;female&amp;rsquo; contestants?&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;glimpse(hot_dogs)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in glimpse(hot_dogs): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;hot_dogs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;** I have used skimr in the past and for some data it is really helpful to get small histograms of the data.**&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(skimr)
+skim(hot_dogs)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in skim(hot_dogs): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;wrangling&#34;&gt;Wrangling&lt;/h2&gt;
+&lt;p&gt;Filtering and indicator field&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;## mutate w/o the &amp;gt;= 1997 will produce the same information as the first column (year.) Here a logical of TRUE or FALSE will result.
+ 
+hot_dogs &amp;lt;- hot_dogs %&amp;gt;% 
+  mutate(post_ifoce = year &amp;gt;= 1997) %&amp;gt;%   
+  filter(year &amp;gt;= 1981 &amp;amp; gender == &#39;male&#39;)  ## ampersand (&amp;amp;) must be used here not &amp;quot;and&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in mutate(., post_ifoce = year &amp;gt;= 1997): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;hot_dogs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;initial-plot&#34;&gt;Initial Plot&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(hot_dogs, aes(x= year, y= num_eaten)) +
+  geom_col()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;** I don&amp;rsquo;t mind this boring looking plot but it would be nice to have a title and more year labels, every 2 or 5 years.**&lt;/p&gt;
+&lt;h1 id=&#34;axis-labels--title&#34;&gt;Axis Labels &amp;amp; Title&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col() +
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot Dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;initial-colors--styling&#34;&gt;Initial Colors &amp;amp; Styling&lt;/h1&gt;
+&lt;h2 id=&#34;challenge-1-3-different-versions&#34;&gt;Challenge 1: 3 Different Versions&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# White outlines version
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(colour = &amp;quot;white&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# White outlines and blue columns version
+
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(colour = &amp;quot;white&amp;quot;, fill = &amp;quot;navyblue&amp;quot;) +  
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# White outlines version
+# can use aes not only for mapping but for defining the aesthetics of geom_col
+
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &amp;quot;white&amp;quot;) +  
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;challenge-2-adjusting-the-legend&#34;&gt;Challenge 2: Adjusting the Legend&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Deleted legend
+ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &amp;quot;white&amp;quot;) +
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathans Hot Dog Earting Contest Results, 1981-2017&amp;quot;) +
+  theme(legend.position = &amp;quot;none&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(hot_dogs, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = post_ifoce), colour = &amp;quot;white&amp;quot;) +  
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;) +
+  scale_fill_discrete(name = &amp;quot;&amp;quot;, labels = c(&amp;quot;Pre-IFOCE&amp;quot;, &amp;quot;Post-IFOCE&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;change-the-dataset&#34;&gt;Change the Dataset&lt;/h1&gt;
+&lt;p&gt;IFOCE affiliation analysis&lt;/p&gt;
+&lt;h2 id=&#34;challenge-3-adding-columns-filtering&#34;&gt;Challenge 3: Adding Columns, Filtering&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;hot_dogs_af &amp;lt;- read_csv(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;,&amp;quot;2021-06-11-data-visualization-lab01&amp;quot;,&amp;quot;data&amp;quot;, &amp;quot;hot_dog_contest_with_affiliation.csv&amp;quot;), 
+    col_types = cols(
+      affiliated = col_factor(levels = NULL), 
+      gender = col_factor(levels = NULL)
+      )) %&amp;gt;% 
+  mutate(post_ifoce = year &amp;gt;= 1997) %&amp;gt;% 
+  filter(year &amp;gt;= 1981 &amp;amp; gender == &amp;quot;male&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;glimpse(hot_dogs_af)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in glimpse(hot_dogs_af): object &#39;hot_dogs_af&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;challenge-4-eda&#34;&gt;Challenge 4: EDA&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Using dplyer::distinct to figure out how many unique values there are of affiliated
+hot_dogs_af %&amp;gt;% distinct(affiliated)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in distinct(., affiliated): object &#39;hot_dogs_af&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Using dplyr::count to count the number of rows for each unique value of affiliated
+hot_dogs_af %&amp;gt;% count(affiliated)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in count(., affiliated): object &#39;hot_dogs_af&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;updated-plot&#34;&gt;Updated Plot&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Making a plot identifying values that are affiliated
+
+ggplot(hot_dogs_af, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill= affiliated)) +
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs_af, aes(x = year, y = num_eaten)): object &#39;hot_dogs_af&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;challenge-5-adjusting-the-colors&#34;&gt;Challenge 5: Adjusting the Colors&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Updating colours of the plot
+
+affil_plot &amp;lt;- ggplot(hot_dogs_af, aes(x = year, y = num_eaten)) +
+  geom_col(aes(fill = affiliated)) +
+  labs(x = &amp;quot;Year&amp;quot;, y = &amp;quot;Hot Dogs and Buns Consumed&amp;quot;) +
+  ggtitle(&amp;quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&amp;quot;) +
+  scale_fill_manual(name = &amp;quot;IFOC-affiliation&amp;quot;, values = c(&#39;#E9602B&#39;,&#39;#2277A0&#39;,&#39;#CCB683&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in ggplot(hot_dogs_af, aes(x = year, y = num_eaten)): object &#39;hot_dogs_af&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;affil_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;sweating-the-details&#34;&gt;Sweating the Details&lt;/h1&gt;
+&lt;h2 id=&#34;initial-plot-1&#34;&gt;Initial plot&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Adjusting the scales: default scales are c(0.05, 0) for continuous variables. The first number is multiplicative and second is additive. This brings the colored bars resting on both the x and y axis.
+
+affil_plot &amp;lt;- affil_plot + 
+  scale_y_continuous(expand = c(0, 0),
+                     breaks = seq(0, 80, 10)) +
+  scale_x_continuous(expand = c(0, 0))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;affil_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Personally, I like having a little bit of space between the top of the orange bars. I increased the y breaks to equal seq(0, 80, 10) but nothing changed.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;challenge-6-custom-axes&#34;&gt;Challenge 6: Custom Axes&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;affil_plot &amp;lt;- affil_plot + 
+  coord_cartesian(xlim = c(1980, 2018), ylim = c(0, 80))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;affil_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;themes&#34;&gt;Themes&lt;/h1&gt;
+&lt;h2 id=&#34;initial-plot-2&#34;&gt;Initial Plot&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Customizing the placement of the title, axis font size, removing the background color, and adjusting the color of the axis and ticks
+# default hjust: 0 == left, 0.5 == centered, 1 == right
+
+affil_plot + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text = element_text(size = 10)) +
+  theme(panel.background = element_blank()) +
+  theme(axis.line.x = element_line(color = &amp;quot;gray80&amp;quot;, size = 0.5)) +
+  theme(axis.ticks = element_line(color = &amp;quot;gray80&amp;quot;, size = 0.5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;I think without the background panel the plot looks better but is harder to interpret.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;making-a-custom-theme&#34;&gt;Making a Custom Theme&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Might be easier to use a theme by creating a variable representing all of the settings
+
+hot_diggity &amp;lt;- theme(plot.title = element_text(hjust = 0.5),
+                     axis.text = element_text(size = 10),
+                     panel.background = element_blank(),
+                     axis.line.x = element_line(color = &amp;quot;gray80&amp;quot;, size = 0.5),
+                     axis.ticks = element_line(color = &amp;quot;gray80&amp;quot;, size = 0.5),
+                     text = element_text(family = &amp;quot;Lato&amp;quot;) # need extrafont for this
+                     )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;`&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Another library theme
+
+affil_plot + theme_tufte(base_family = &amp;quot;Palatino&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hi Everyone</title>
+      <link>/post/hi-everyone/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/hi-everyone/</guid>
+      <description>&lt;h1 id=&#34;this-is-my-first-website-it-is-a-work-in-progress&#34;&gt;This is my first website. It is a work in progress&amp;hellip;&lt;/h1&gt;
+&lt;h2 id=&#34;experiment-with-color-on-gapminder-data&#34;&gt;Experiment with color on gapminder data.&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Note that I have already taken care of installing these in this RStudio Cloud project, but if you want to use these libraries yourself, here&#39;s how you&#39;d install them:
+library(devtools)
+devtools::install_github(&amp;quot;wilkelab/cowplot&amp;quot;)
+devtools::install_github(&amp;quot;clauswilke/colorblindr&amp;quot;)
+devtools::install_github(&amp;quot;dill/beyonce&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.6
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in .recacheSubclasses(def@className, def, env): undefined subclass
+## &amp;quot;numericVector&amp;quot; of class &amp;quot;Mnumeric&amp;quot;; definition not updated
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## here() starts at /Users/looc/Box/2021_Spring_classes/Data_Viz/blogdown/Chris_Loo_website
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &#39;beyonce&#39;:
+##   method        from       
+##   print.palette wesanderson
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: viridisLite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1,704
+## Columns: 6
+## $ country   &amp;lt;fct&amp;gt; &amp;quot;Afghanistan&amp;quot;, &amp;quot;Afghanistan&amp;quot;, &amp;quot;Afghanistan&amp;quot;, &amp;quot;Afghanistan&amp;quot;, …
+## $ continent &amp;lt;fct&amp;gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &amp;lt;int&amp;gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &amp;lt;dbl&amp;gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &amp;lt;int&amp;gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &amp;lt;dbl&amp;gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;version-with-_good_-color&#34;&gt;Version with &lt;em&gt;good&lt;/em&gt; color&lt;/h2&gt;
+&lt;p&gt;Also, good with default colors&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;brewer.pal(5, &amp;quot;Dark2&amp;quot;) # list 5 hex colors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;#1B9E77&amp;quot; &amp;quot;#D95F02&amp;quot; &amp;quot;#7570B3&amp;quot; &amp;quot;#E7298A&amp;quot; &amp;quot;#66A61E&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;my_plot &amp;lt;- ggplot(gap, aes(x = log(gdpPercap), y = lifeExp, color = (continent))) + 
+  geom_point(alpha = .2, size = 1) +
+  labs(x = &amp;quot;GDP Per Capita (log)&amp;quot;, y = &amp;quot;Life Expectancy&amp;quot;) +
+  facet_wrap(~continent)
+my_plot + scale_color_brewer(palette = &amp;quot;Dark2&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hi-everyone/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;version-with-greyscale&#34;&gt;Version with greyscale&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;my_plot + scale_color_grey(start = 0.2, end = .8) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hi-everyone/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2020-12-01-r-rmarkdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      <guid>/post/2020-12-01-r-rmarkdown/</guid>
+      <description>
+
+
+&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R Markdown&lt;/h1&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+fit &amp;lt;- lm(dist ~ speed, data = cars)
+fit
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Including Plots&lt;/h1&gt;
+&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
+pie(
+  c(280, 60, 20),
+  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
+  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
+  init.angle = -50, border = NA
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: A fancy pie chart.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
