@@ -23,6 +23,10 @@ projects: []
 Data is publically available from OHSU.
 www.vizome.org
 
+### Background in Neoepitope Prediction
+```{r}
+knitr::include_url('https://timmastny.rbind.io/slides/first_presentation#1')
+```
 
 
 

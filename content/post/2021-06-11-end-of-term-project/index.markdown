@@ -23,6 +23,13 @@ projects: []
 Data is publically available from OHSU.
 www.vizome.org
 
+### Background in Neoepitope Prediction
+
+```r
+knitr::include_url('https://timmastny.rbind.io/slides/first_presentation#1')
+```
+
+<iframe src="https://timmastny.rbind.io/slides/first_presentation#1" width="672" height="400px"></iframe>
 
 
 
@@ -183,7 +190,7 @@ ggplot(num_HLA_A, aes(x = values, y = n)) +
   theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA A") + ylab("Counts")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 
 ```r
@@ -193,7 +200,7 @@ ggplot(num_HLA_B, aes(x = values, y = n)) +
   theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA B") + ylab("Counts")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 
 ```r
@@ -203,7 +210,7 @@ ggplot(num_HLA_C, aes(x = values, y = n)) +
   theme_pubclean() + theme(axis.text.x = element_text(angle = 90)) + xlab("HLA C") + ylab("Counts")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 
 
@@ -360,7 +367,7 @@ ggplot(mutate(unique_patID, HLA_A_1 = fct_infreq(HLA_A_1))) + geom_bar(aes(x = H
   theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 
@@ -430,7 +437,7 @@ A <- plot_A +
 A
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 ```r
 ggsave("HLA_A.png", A )
@@ -481,7 +488,7 @@ plot_B <- ggplot(mutate(HLA_B, value = fct_infreq(value))) + geom_bar(aes(x = va
 plot_B + ggtitle("Population Frequency of HLA-B") 
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 
 
@@ -495,7 +502,7 @@ ggplot(num_HLA_A, aes(x = values, y = n)) +
   theme_pubclean() + theme(axis.text.x = element_text(angle = 90))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 
 
@@ -530,5 +537,5 @@ plot_C <- ggplot(mutate(HLA_C, value = fct_infreq(value))) + geom_bar(aes(x = va
 plot_C + ggtitle("Population Frequency of HLA-C") 
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
