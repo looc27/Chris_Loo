@@ -26,10 +26,10 @@ www.vizome.org
 ### Background in Neoepitope Prediction
 
 ```r
-knitr::include_url('https://timmastny.rbind.io/slides/first_presentation#1')
+knitr::include_url('https://drive.google.com/file/d/1S0idy2YfnbyKeLMQIqslvF2fxCVj-50c/view?usp=sharing')
 ```
 
-<iframe src="https://timmastny.rbind.io/slides/first_presentation#1" width="672" height="400px"></iframe>
+<iframe src="https://drive.google.com/file/d/1S0idy2YfnbyKeLMQIqslvF2fxCVj-50c/view?usp=sharing" width="672" height="400px"></iframe>
 
 
 
